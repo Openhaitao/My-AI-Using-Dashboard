@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Usage Meter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 AI 使用统计</h1>
+      <p class="date" id="currentDate"></p>
+    </header>
+
+    <div class="summary-card">
+      <h2>今日总计</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-content">
+            <div class="stat-label">使用时间</div>
+            <div class="stat-value" id="totalTime">0分钟</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">💬</div>
+          <div class="stat-content">
+            <div class="stat-label">提问次数</div>
+            <div class="stat-value" id="totalQuestions">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-section">
+      <h2>各平台详情</h2>
+      
+      <div class="ai-card chatgpt">
+        <div class="ai-header">
+          <div class="ai-logo">🤖</div>
+          <h3>ChatGPT</h3>
+        </div>
+        <div class="ai-stats">
+          <div class="ai-stat">
+            <span class="label">时间:</span>
+            <span class="value" id="chatgptTime">0分钟</span>
+          </div>
+          <div class="ai-stat">
+            <span class="label">提问:</span>
+            <span class="value" id="chatgptQuestions">0次</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-card gemini">
+        <div class="ai-header">
+          <div class="ai-logo">✨</div>
+          <h3>Gemini</h3>
+        </div>
+        <div class="ai-stats">
+          <div class="ai-stat">
+            <span class="label">时间:</span>
+            <span class="value" id="geminiTime">0分钟</span>
+          </div>
+          <div class="ai-stat">
+            <span class="label">提问:</span>
+            <span class="value" id="geminiQuestions">0次</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-card claude">
+        <div class="ai-header">
+          <div class="ai-logo">🎯</div>
+          <h3>Claude</h3>
+        </div>
+        <div class="ai-stats">
+          <div class="ai-stat">
+            <span class="label">时间:</span>
+            <span class="value" id="claudeTime">0分钟</span>
+          </div>
+          <div class="ai-stat">
+            <span class="label">提问:</span>
+            <span class="value" id="claudeQuestions">0次</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="refreshBtn" class="btn-refresh">🔄 刷新数据</button>
+      <button id="resetBtn" class="btn-reset">🗑️ 重置今日数据</button>
+    </div>
+
+    <footer>
+      <p>💡 插件会自动追踪您在 AI 平台上的使用情况</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+
