@@ -3,171 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Usage Meter - Pixel Style</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <title>AI 使用统计</title>
   <link rel="stylesheet" href="sidepanel.css">
 </head>
 <body>
   <div class="container">
-    <header>
-      <div class="header-content">
-        <div class="header-title">
-          <img src="icons/icon48.png" alt="AI Usage Meter" class="header-logo">
-          <h1>AI USAGE METER</h1>
-        </div>
-        <p class="date" id="currentDate"></p>
-      </div>
-    </header>
 
     <div class="main-content">
-      <!-- 总计卡片 -->
-      <section class="summary-section">
-        <h2>📈 今日总计</h2>
-        <div class="summary-cards">
-          <div class="summary-card time">
-            <div class="card-icon">⏱️</div>
-            <div class="card-content">
-              <div class="card-label">总使用时间</div>
-              <div class="card-value" id="totalTime">0分钟</div>
-            </div>
-          </div>
-          <div class="summary-card questions">
-            <div class="card-icon">💬</div>
-            <div class="card-content">
-              <div class="card-label">总提问次数</div>
-              <div class="card-value" id="totalQuestions">0次</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 平台详情 -->
-      <section class="platforms-section">
-        <h2>🤖 各平台详情</h2>
-        
-        <div class="platform-card chatgpt">
-          <div class="platform-header">
-            <div class="platform-info">
-              <div class="platform-logo">🤖</div>
-              <h3>ChatGPT</h3>
-            </div>
-            <div class="platform-badge">OpenAI</div>
-          </div>
-          <div class="platform-stats">
-            <div class="stat-box">
-              <div class="stat-icon">⏱️</div>
-              <div class="stat-info">
-                <span class="stat-label">使用时间</span>
-                <span class="stat-value" id="chatgptTime">0分钟</span>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon">💬</div>
-              <div class="stat-info">
-                <span class="stat-label">提问次数</span>
-                <span class="stat-value" id="chatgptQuestions">0次</span>
-              </div>
-            </div>
-          </div>
-          <div class="platform-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" id="chatgptProgress"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="platform-card gemini">
-          <div class="platform-header">
-            <div class="platform-info">
-              <div class="platform-logo">✨</div>
-              <h3>Gemini</h3>
-            </div>
-            <div class="platform-badge">Google</div>
-          </div>
-          <div class="platform-stats">
-            <div class="stat-box">
-              <div class="stat-icon">⏱️</div>
-              <div class="stat-info">
-                <span class="stat-label">使用时间</span>
-                <span class="stat-value" id="geminiTime">0分钟</span>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon">💬</div>
-              <div class="stat-info">
-                <span class="stat-label">提问次数</span>
-                <span class="stat-value" id="geminiQuestions">0次</span>
-              </div>
-            </div>
-          </div>
-          <div class="platform-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" id="geminiProgress"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="platform-card claude">
-          <div class="platform-header">
-            <div class="platform-info">
-              <div class="platform-logo">🎯</div>
-              <h3>Claude</h3>
-            </div>
-            <div class="platform-badge">Anthropic</div>
-          </div>
-          <div class="platform-stats">
-            <div class="stat-box">
-              <div class="stat-icon">⏱️</div>
-              <div class="stat-info">
-                <span class="stat-label">使用时间</span>
-                <span class="stat-value" id="claudeTime">0分钟</span>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon">💬</div>
-              <div class="stat-info">
-                <span class="stat-label">提问次数</span>
-                <span class="stat-value" id="claudeQuestions">0次</span>
-              </div>
-            </div>
-          </div>
-          <div class="platform-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" id="claudeProgress"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 使用趋势图表 -->
+      <!-- 使用时长柱状图 -->
       <section class="chart-section">
-        <h2>📊 使用分布</h2>
-        <div class="chart-container">
-          <div class="bar-chart" id="barChart"></div>
+        <h3>使用时长</h3>
+        <div class="date-display">
+          <span id="currentDate" class="date-text">12 月 30 日 今天</span>
+        </div>
+        <div class="total-time" id="totalTime">8 小时 3 分钟</div>
+        <div class="bar-chart-container">
+          <div class="chart-wrapper" id="weeklyChart">
+            <!-- 周视图柱状图 -->
+          </div>
         </div>
       </section>
 
-      <!-- 操作按钮 -->
-      <section class="actions-section">
-        <button id="refreshBtn" class="btn btn-primary">
-          <span class="btn-icon">🔄</span>
-          <span>刷新数据</span>
-        </button>
-        <button id="resetBtn" class="btn btn-secondary">
-          <span class="btn-icon">🗑️</span>
-          <span>重置今日数据</span>
-        </button>
-      </section>
-    </div>
+      <!-- 当天使用时长 -->
+      <section class="usage-section">
+        <h3>当天使用时长</h3>
+        <div class="usage-list">
+          <div class="usage-item chatgpt">
+            <img src="AI Logo/ChatGPT.png" alt="ChatGPT" class="ai-icon">
+            <span class="ai-name">ChatGPT</span>
+            <div class="usage-bar-container">
+              <div class="usage-bar" id="chatgptBar"></div>
+            </div>
+            <span class="usage-value" id="chatgptTime">0 分钟</span>
+          </div>
 
-    <footer>
-      <div class="footer-content">
-        <p>💡 插件会自动追踪您在 AI 平台上的使用情况</p>
-        <p class="version">Version 1.0.0</p>
-      </div>
-    </footer>
+          <div class="usage-item claude">
+            <img src="AI Logo/Claude.png" alt="Claude" class="ai-icon">
+            <span class="ai-name">Claude</span>
+            <div class="usage-bar-container">
+              <div class="usage-bar" id="claudeBar"></div>
+            </div>
+            <span class="usage-value" id="claudeTime">0 分钟</span>
+          </div>
+
+          <div class="usage-item gemini">
+            <img src="AI Logo/gemini.png" alt="Gemini" class="ai-icon">
+            <span class="ai-name">Gemini</span>
+            <div class="usage-bar-container">
+              <div class="usage-bar" id="geminiBar"></div>
+            </div>
+            <span class="usage-value" id="geminiTime">0 分钟</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 当天使用次数 -->
+      <section class="usage-section">
+        <h3>当天使用次数</h3>
+        <div class="usage-list">
+          <div class="usage-item chatgpt">
+            <img src="AI Logo/ChatGPT.png" alt="ChatGPT" class="ai-icon">
+            <span class="ai-name">ChatGPT</span>
+            <div class="usage-bar-container">
+              <div class="usage-bar count" id="chatgptCountBar"></div>
+            </div>
+            <span class="usage-value" id="chatgptQuestions">0 次</span>
+          </div>
+
+          <div class="usage-item claude">
+            <img src="AI Logo/Claude.png" alt="Claude" class="ai-icon">
+            <span class="ai-name">Claude</span>
+            <div class="usage-bar-container">
+              <div class="usage-bar count" id="claudeCountBar"></div>
+            </div>
+            <span class="usage-value" id="claudeQuestions">0 次</span>
+          </div>
+
+          <div class="usage-item gemini">
+            <img src="AI Logo/gemini.png" alt="Gemini" class="ai-icon">
+            <span class="ai-name">Gemini</span>
+            <div class="usage-bar-container">
+              <div class="usage-bar count" id="geminiCountBar"></div>
+            </div>
+            <span class="usage-value" id="geminiQuestions">0 次</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </div>
 
   <script src="sidepanel.js"></script>
